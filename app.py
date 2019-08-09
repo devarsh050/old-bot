@@ -84,7 +84,7 @@ async def on_message(message):
         await message.author.send(msg + (random.choice(randomlist)))
         
     if message.content.startswith('!nord'):
-        randomlist = ['https://filemedia.net/27527/NordVPN','https://filemedia.net/27527/NordVPN2','https://filemedia.net/27527/NordVPN3']
+        randomlist = ['https://filemedia.net/27527/NordVPN','https://filemedia.net/27527/NordVPN','https://filemedia.net/27527/NordVPN']
         msg = 'Hello ' + author + '. Your link: '
         await message.author.send(msg + (random.choice(randomlist)))
         
