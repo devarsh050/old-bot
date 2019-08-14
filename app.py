@@ -148,6 +148,25 @@ async def on_message(message):
         await message.channel.purge(limit=a)
     await client.process_commands(message)
     
+    
+@client.command()
+async def embed():
+    embed = discord.Embed(
+        title = 'Title',
+        description = 'This is a discription.',
+        colour = discord.Colour.blue()
+    )
+
+    embed.set_footer(text='This is a footer.')	
+    embed.set.image(url='')
+    embed.set_thumbnail(url='')
+    embed.set_author(name='Author Name', icon_url)
+    embed.add_field(name='Field Name', value='Field Value', inline=False)
+    embed.add_field(name='Field Name', value='Field Value', inline=True)
+    embed.add_field(name='Field Name', value='Field Value', inline=True)
+    
+    await client.say(embed=embed)
+    
 @client.event
 async def on_ready():
     print('Logged in as')
