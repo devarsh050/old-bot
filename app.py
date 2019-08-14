@@ -158,8 +158,8 @@ async def embed():
     )
 
     embed.set_footer(text='This is a footer.')	
-    embed.set.image(url='')
-    embed.set_thumbnail(url='')
+    embed.set.image(url='https://cdn.discordapp.com/attachments/601008593541660695/611117924400234505/Hacking-an-account-760x500.png')
+    embed.set_thumbnail(url='https://cdn.discordapp.com/attachments/601008593541660695/611117924400234505/Hacking-an-account-760x500.png')
     embed.set_author(name='Author Name', icon_url)
     embed.add_field(name='Field Name', value='Field Value', inline=False)
     embed.add_field(name='Field Name', value='Field Value', inline=True)
