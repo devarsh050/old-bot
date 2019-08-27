@@ -4,23 +4,19 @@ from discord.ext import commands, tasks
 import os
 import asyncio
 import random
+import time
 from itertools import cycle
 from discord.utils import get
+from discord import Game
+import os
 
 client = commands.Bot(command_prefix='!')
 #client = discord.Client()
 
 #create an arraylist containing phrases you want your bot to switch through.
-status = cycle(['www.rabbit001.cf', 'With BlackRabbit', 'with Generator', 'with accounts'])
+status = cycle(['www.rabbit001.cf', 'With BlackRabbit', 'with Generator', 'with accounts', '!invite'])
 
-@client.command()
-async def lala(ctx):
-    check_role = get(ctx.message.guild.roles, name='Leader')
-    if check_role in ctx.author.roles:
-        await ctx.send("Yes, you are the leader.")
-
-    else:
-        await ctx.send("You can't use this")
+client.remove_command('help')
 
 @client.command()
 async def clear(ctx, amount=5):
@@ -32,8 +28,16 @@ async def ban(ctx):
     if check_role in ctx.author.roles:
         await ctx.send("https://gifimage.net/wp-content/uploads/2017/07/ban-hammer-gif-14.gif")
     else:
-        await ctx.send("You can't use this")
-    
+        await ctx.send("You can't use this!")
+ 
+@client.event
+async def on_message(message):
+    if message.content.startswith('!help'):
+        embed = discord.Embed(title="For more info visit http://rabbit001.cf", description="", color=0x00ff00)
+        embed.add_field(name="commands:", value="for list of commands visit: http://rabbit001.cf/commands.html", inline=False)
+        embed.add_field(name="U want invite my bot to ur server? Use this link:", value="https://discordapp.com/oauth2/authorize?client_id=604967241863397376&permissions=8&scope=bot", inline=False)
+        await message.channel.send(message.channel, embed=embed)
+
 @client.event
 async def on_ready():
     print("Bot Was Deployed Sucessfully !")
@@ -59,6 +63,12 @@ async def on_message(message):
     if message.content.startswith('!hello'):
         msg = 'Hello python {0.author.mention}'.format(message)
         await message.author.send(msg)
+        
+    if message.content.startswith('!commands'):
+        await message.author.send("http://rabbit001.cf/commands.html")
+        
+    if message.content.startswith('!invite'):
+        await message.author.send("For invite link visit http://rabbit001.cf/")
 
     if message.content.startswith('!fortnite'):
         randomlist = ['https://filemedia.net/27527/fortnite','https://up-to-down.net/27527/fortnite02','https://filemedia.net/27527/fortnite2']
@@ -147,7 +157,6 @@ async def on_message(message):
         a = int(args[1])
         await message.channel.purge(limit=a)
     await client.process_commands(message)
-    
     
 @client.event
 async def on_ready():
